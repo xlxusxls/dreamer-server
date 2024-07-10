@@ -6,9 +6,11 @@ public class PlayerPoint : MonoBehaviour
 {
     private int playerPoints = 0;  // 플레이어의 포인트
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         Debug.Log("충돌 감지");
+        Debug.Log(other.gameObject.name);
+        Debug.Log(other.gameObject.tag);
         if (other.gameObject.CompareTag("Reward"))
         {
             Debug.Log("Reward와 충돌");
