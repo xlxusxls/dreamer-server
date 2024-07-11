@@ -30,4 +30,9 @@ public class PlayerPoint : MonoBehaviour
         playerPoints += pointsToAdd;  // 포인트를 추가합니다.
         Debug.Log("포인트 추가: " + pointsToAdd + ", 현재 포인트: " + playerPoints);
     }
+
+    public int getPoint()
+    {
+        return playerPoints;
+    }
 }
