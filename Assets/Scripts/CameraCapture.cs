@@ -31,10 +31,10 @@ public class CameraCapture : MonoBehaviour
         byte[] bytes = texture2D.EncodeToJPG();
 
         // 디코딩 결과 byte 자료형 배열에 저장
-        string path = Path.Combine(Application.dataPath, "CapturedImage.jpg");
-        File.WriteAllBytes(path, bytes);
+        //string path = Path.Combine(Application.dataPath, "CapturedImage.jpg");
+        //File.WriteAllBytes(path, bytes);
 
-        Debug.Log("Image saved to: " + path);
+        //Debug.Log("Image saved to: " + path);
 
         // Clean up
         RenderTexture.active = null;
