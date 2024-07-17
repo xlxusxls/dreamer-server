@@ -17,17 +17,16 @@ public class PlayerPoint : MonoBehaviour
             Reward reward = other.gameObject.GetComponent<Reward>();  
             if (reward != null)
             {
-                AddPoints(reward.rewardScore);
+                AddPoints(reward.RewardScore);  // 수정된 프로퍼티 사용
                 Debug.Log("Reward 객체 삭제");
                 Destroy(other.gameObject);
             }
         }
     }
 
-
     public void AddPoints(int pointsToAdd)
     {
-        playerPoints += pointsToAdd;  // 포인트를 추가합니다.
+        playerPoints += pointsToAdd;  // 포인트를 추가
         Debug.Log("포인트 추가: " + pointsToAdd + ", 현재 포인트: " + playerPoints);
     }
 
