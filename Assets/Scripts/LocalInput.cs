@@ -26,7 +26,7 @@ public float keyVertical;
     {
         mouseHorizontal = Input.GetAxisRaw("Mouse X");
         mouseVertical = Input.GetAxisRaw("Mouse Y");
-        playerMovement.xRotationSpeed = mouseVertical;
+        playerMovement.xRotationSpeed = mouseVertical * (-1);
         playerMovement.yRotationSpeed = mouseHorizontal;
         keyVertical = Input.GetAxisRaw("Vertical");
         playerMovement.forwardForce = keyVertical;

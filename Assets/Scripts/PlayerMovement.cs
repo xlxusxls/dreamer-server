@@ -14,7 +14,11 @@ public class PlayerMovement : MonoBehaviour
     public float xRotationSpeed;
     public float yRotationSpeed;
     public float JumpForce;
-    
+
+    private Rigidbody rb;
+    private float xRotation;
+    private float yRotation;
+
 
     void Start()
     {
@@ -22,19 +26,17 @@ public class PlayerMovement : MonoBehaviour
      xRotationSpeed = 0;
      yRotationSpeed = 0;
      JumpForce = 0;
-     rigidbody = GetComponent<Rigidbody>();
+     rb = GetComponent<Rigidbody>();
      xRotation = 0;
      yRotation = 0;
 
     }
-private Rigidbody rigidbody;
-private float xRotation;
-private float yRotation;
+
 
     void Update()
     {
      Vector3 forwardDirection = Orientation.transform.forward;
-     rigidbody.AddForce(forwardDirection.normalized*forwardForce);
+     rb.AddForce(forwardDirection.normalized*forwardForce*2);
      xRotation += xRotationSpeed;
      yRotation += yRotationSpeed;
      Orientation.transform.rotation = Quaternion.Euler(0,yRotation,0);

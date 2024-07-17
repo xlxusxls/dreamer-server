@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 952152981}
   - component: {fileID: 952152980}
   - component: {fileID: 952152983}
+  - component: {fileID: 952152984}
   m_Layer: 0
   m_Name: Reward
   m_TagString: Reward
@@ -667,7 +668,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1392837887}
+  - {fileID: 1422672509}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -709,11 +710,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213144b328e94e140adb2e7a49e679e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardColor: 0
-  redScore: 10
-  blueScore: 20
-  greenScore: 30
-  blackScore: 40
+  rewardScore: 10
+--- !u!114 &952152984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952152978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f219719674fe6a24bad8c612c84e3f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardColor: 1
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,7 +918,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!21 &1392837887
+--- !u!21 &1422672509
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -920,7 +930,8 @@ Material:
     (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
     (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
     (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance)
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -1003,7 +1014,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _Color: {r: 0, g: 0, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0.99999994}
     - _EmissionColorUI: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}
@@ -1080,6 +1091,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1736188858}
+  - component: {fileID: 1736188859}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -1103,6 +1115,20 @@ Transform:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1736188859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736188857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbb911e38d9a58469275b5b25562c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LookDirection: {fileID: 140319552}
+  Player: {fileID: 1926838714}
 --- !u!1 &1782194582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,6 +1208,8 @@ GameObject:
   - component: {fileID: 1926838716}
   - component: {fileID: 1926838715}
   - component: {fileID: 1926838717}
+  - component: {fileID: 1926838719}
+  - component: {fileID: 1926838718}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1246,6 +1274,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042042158213ccb4c86e72846b4b47bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1926838718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926838714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ea703061c9a4049b9dc1fe982ab1a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
+  keyVertical: 0
+--- !u!114 &1926838719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926838714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10191a991042dc7468045727832fd015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Orientation: {fileID: 1735193501}
+  LookDirection: {fileID: 140319552}
+  forwardForce: 0
+  xRotationSpeed: 0
+  yRotationSpeed: 0
+  JumpForce: 0
 --- !u!1 &2002136149
 GameObject:
   m_ObjectHideFlags: 0
