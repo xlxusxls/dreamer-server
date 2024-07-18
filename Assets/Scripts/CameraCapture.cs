@@ -6,9 +6,7 @@ using System.IO;
 
 public class CameraCapture : MonoBehaviour
 {
-    public Camera playerCamera; // 플레이어 카메라를 참조하는 변수
     public RenderTexture renderTexture; // 캡처한 이미지를 저장할 Render Texture 변수
-    public string filePath = "CapturedImage.jpg"; // 저장할 파일 경로
 
     void Start()
     {
@@ -33,7 +31,7 @@ public class CameraCapture : MonoBehaviour
         byte[] bytes = texture2D.EncodeToJPG();
 
         stopwatch.Stop(); // 알고리즘 실행 시간 측정 종료
-        Debug.Log(stopwatch.ElapsedMilliseconds); // 실행 시간 출력
+        Debug.Log("Elapsed milliseconds: " + stopwatch.ElapsedMilliseconds); // 실행 시간 출력
 
         // 디코딩 결과 byte 자료형 배열에 저장
         //string path = Path.Combine(Application.dataPath, "CapturedImage.jpg");
@@ -44,7 +42,5 @@ public class CameraCapture : MonoBehaviour
         // Clean up
         RenderTexture.active = null;
         Destroy(texture2D);
-
-        
     }
 }
