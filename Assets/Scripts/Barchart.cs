@@ -5,7 +5,7 @@ using UnityEngine;
 public class Barchart : MonoBehaviour
 {
     public GameObject Player;
-    private int Playerpoint;
+    private float Playerpoint;
     private RectTransform recttransform;
 
 
@@ -13,7 +13,7 @@ public class Barchart : MonoBehaviour
     void Start()
     
     {
-       Playerpoint= -1;
+       Playerpoint = -1.0f;
 
        recttransform = GetComponent<RectTransform>();
     }
@@ -21,10 +21,10 @@ public class Barchart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Playerpoint = Player.GetComponent<PlayerPoint>().getPoint();
-        recttransform.localScale = new Vector3(1, Playerpoint/10,1);
-
-
-
+        if (Player != null)
+        {
+            Playerpoint = Player.GetComponent<PlayerPoint>().getPoint();
+            recttransform.localScale = new Vector3(1, Playerpoint, 1);
+        }   
     }
 }
