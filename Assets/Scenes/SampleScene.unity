@@ -1183,8 +1183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbbb911e38d9a58469275b5b25562c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookDirection: {fileID: 140319552}
-  Player: {fileID: 1926838714}
+  LookDirection: {fileID: 110466324}
+  Player: {fileID: 85356651}
 --- !u!1 &1782194582
 GameObject:
   m_ObjectHideFlags: 0
