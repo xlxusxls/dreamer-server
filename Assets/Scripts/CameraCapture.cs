@@ -6,13 +6,16 @@ using System.IO;
 
 public class CameraCapture : MonoBehaviour
 {
-    public RenderTexture renderTexture; // 캡처한 이미지를 저장할 Render Texture 변수
+    private RenderTexture renderTexture; // 캡처한 이미지를 저장할 Render Texture 변수
 
     void Start()
     {
+        renderTexture = new RenderTexture(256, 256, 16); // renderTexture 변수에 Render Texture를 동적 생성 후 할당
+        renderTexture.Create();
         
-        // renderTexture 변수에 Render Texture를 할당해야 합니다.
-        // renderTexture = someRenderTexture;
+        gameObject.GetComponent<Camera>().targetTexture = renderTexture;
+
+        StartCaptureAndSaveImage();
     }
 
     public void StartCaptureAndSaveImage()
@@ -32,6 +35,12 @@ public class CameraCapture : MonoBehaviour
 
         // 읽어온 이미지 JPEG 포맷으로 디코딩
         byte[] bytes = texture2D.EncodeToJPG();
+
+        // 디코딩 결과 byte 자료형 배열에 저장
+        string path = Path.Combine(Application.dataPath, "CapturedImage.jpg");
+        File.WriteAllBytes(path, bytes);
+
+        Debug.Log("Image saved to: " + path);
 
         // Clean up
         RenderTexture.active = null;
@@ -59,5 +68,10 @@ public class CameraCapture : MonoBehaviour
         // Clean up
         RenderTexture.active = null;
         Destroy(texture2D);
+    }
+
+    private void OnDestroy()
+    {
+        renderTexture.Release();
     }
 }
