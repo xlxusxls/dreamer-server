@@ -24,6 +24,10 @@ public class Barchart : MonoBehaviour
         if (Player != null)
         {
             Playerpoint = Player.GetComponent<PlayerPoint>().getPoint();
+            if(Playerpoint <= 0.0f)
+            {
+                gameObject.SetActive(false);
+            }
             recttransform.localScale = new Vector3(1, Playerpoint, 1);
         }   
     }
