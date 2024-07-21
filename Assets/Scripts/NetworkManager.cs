@@ -28,21 +28,31 @@ public class NetworkManager : MonoBehaviour
         {
             int generation = BitConverter.ToInt32(_packet.Array, 2+_packet.Offset);
             Debug.Log($"received 0x1000. Generation: {generation}");
+
+            //Instantiate Player and Camera Prefab
+            //Send captured Image(coroutine which waits until image is encoded)
         });
         MyServer.packetHandlers.Add(0x2000, (int _fromClient, ArraySegment<byte> _packet) =>
         {
-            Debug.Log($"received 0x3000");
-            for (int i = 0; i < 5; i++)
+            int outputSize = 4;
+            Debug.Log($"received 0x2000");
+            for (int i = 0; i < outputSize; i++)
             {
-                double output = BitConverter.ToDouble(_packet.Array, 2+_packet.Offset + i * 8);
+                double output = BitConverter.ToSingle(_packet.Array, 2+_packet.Offset + outputSize * 4);
                 Debug.Log($"{output}");
+                //update _fromClient player movement
             }
+            //check if playerpoint is below 0
+            //if true send fitness packet and destroy player and camera
+            //if not send captured Image(coroutine which waits until image is encoded)
         });
         MyServer.packetHandlers.Add(0x3000, (int _fromClient, ArraySegment<byte> _packet) =>
         {
-            
             int generation = BitConverter.ToInt32(_packet.Array, 2+_packet.Offset);
-            Debug.Log($"received 0x2000. Generation: {generation}");
+            Debug.Log($"received 0x3000. Generation: {generation}");
+
+            //Instantiate Player and Camera Prefab
+            //Send captured Image(coroutine which waits until image is encoded)
         });
 
         server = new Telepathy.Server(65536);
