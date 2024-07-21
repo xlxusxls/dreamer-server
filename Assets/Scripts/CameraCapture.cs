@@ -7,6 +7,8 @@ using System.IO;
 public class CameraCapture : MonoBehaviour
 {
     private RenderTexture renderTexture; // 캡처한 이미지를 저장할 Render Texture 변수
+    public byte[] bytes;
+    public bool CompleteCaptureRequest;
 
     void Start()
     {
@@ -15,7 +17,7 @@ public class CameraCapture : MonoBehaviour
         
         gameObject.GetComponent<Camera>().targetTexture = renderTexture;
 
-        //StartCaptureAndSaveImage();
+        CompleteCaptureRequest=false;
     }
 
     public void StartCaptureAndSaveImage()
@@ -34,17 +36,13 @@ public class CameraCapture : MonoBehaviour
         texture2D.Apply();
 
         // 읽어온 이미지 JPEG 포맷으로 디코딩
-        byte[] bytes = texture2D.EncodeToJPG();
-
-        // 디코딩 결과 byte 자료형 배열에 저장
-        //string path = Path.Combine(Application.dataPath, "CapturedImage.jpg");
-        //File.WriteAllBytes(path, bytes);
-
-        //Debug.Log("Image saved to: " + path);
+        bytes = texture2D.EncodeToJPG();
 
         // Clean up
         RenderTexture.active = null;
         Destroy(texture2D);
+
+        CompleteCaptureRequest=true;
     }
 
     IEnumerator CaptureAndSaveImageElapse()
