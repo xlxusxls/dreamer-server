@@ -10,7 +10,7 @@ public class LocalInput : MonoBehaviour
 
     public PlayerMovement playerMovement;
     public float keyVertical;
-    public float KeyHorizontal;
+    public float keyHorizontal;
     private bool cursorLocked = true;
 
 
@@ -20,7 +20,7 @@ public class LocalInput : MonoBehaviour
         mouseVertical = 0;
         playerMovement = GetComponent<PlayerMovement>();
         keyVertical = 0;
-        KeyHorizontal = 0;
+        keyHorizontal = 0;
         ToggleCursorLock(true);
     }
 
@@ -29,15 +29,16 @@ public class LocalInput : MonoBehaviour
     {
         mouseHorizontal = Input.GetAxisRaw("Mouse X");
         mouseVertical = Input.GetAxisRaw("Mouse Y");
-        playerMovement.xRotationSpeed = mouseVertical * (-1);
+        playerMovement.xRotationSpeed = mouseVertical;
         playerMovement.yRotationSpeed = mouseHorizontal;
         keyVertical = Input.GetAxisRaw("Vertical");
         playerMovement.forwardForce = keyVertical;
-        KeyHorizontal = Input.GetAxisRaw("Horizontal");
-        playerMovement.horizontalForce = KeyHorizontal;
+        keyHorizontal = Input.GetAxisRaw("Horizontal");
+        playerMovement.horizontalForce = keyHorizontal;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            //ESC 키로 커서 잠금 여부 조절
             ToggleCursorLock(!cursorLocked);
         }
     }
