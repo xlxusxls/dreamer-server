@@ -14,48 +14,43 @@ public class PlayerMovement : MonoBehaviour
  
     public float forwardForce;
     public float horizontalForce;
-    public float horizontalMoveSpeed;
-    public float forwardMoveSpeed;
+    public float horizontalMoveCoefficient = 10f;
+    public float forwardMoveCoefficient = 10f;
     public float xRotationSpeed;
     public float yRotationSpeed;
     public float JumpForce;
-   
-    
+
+    private Rigidbody rb;
+    private float xRotation;
+    private float yRotation;
+
+    public float rho = 0.2f;
+
+
     void Start()
     {
-     forwardForce = 0;
-     horizontalForce = 0;
-     horizontalMoveSpeed = 4;
-     forwardMoveSpeed = 4;
-     xRotationSpeed = 0;
-     yRotationSpeed = 0;
-     JumpForce = 0;
-     rigidBody = GetComponent<Rigidbody>();
-     xRotation = 0;
-     yRotation = 0;
-     forwardDirection = 0;
-     horizontalDirection = 0;
+        forwardForce = 0;
+        horizontalForce = 0;
+        xRotationSpeed = 0;
+        yRotationSpeed = 0;
+        JumpForce = 0;
+        rb = GetComponent<Rigidbody>();
+        xRotation = 0;
+        yRotation = 0;
     }
-private Rigidbody rigidBody;
-private float xRotation;
-private float yRotation;
-private float forwardDirection;
-private float horizontalDirection;
+
 
     void Update()
     {
-     xRotation += xRotationSpeed;
-     yRotation += yRotationSpeed;
-     Orientation.transform.rotation = Quaternion.Euler(0,yRotation,0);
-     LookDirection.transform.rotation = Quaternion.Euler(xRotation,yRotation,0);
-     Vector3 forwardDir = Orientation.transform.forward;
-     rigidBody.AddForce(forwardDir.normalized * forwardMoveSpeed * 4f * forwardForce, ForceMode.Force);
-     forwardDirection += forwardMoveSpeed;
-     
-     Vector3 horizontalDir = Orientation.transform.right;
-     rigidBody.AddForce(horizontalDir.normalized * horizontalMoveSpeed * 4f * horizontalForce, ForceMode.Force);
-     horizontalDirection += horizontalMoveSpeed;
-
+        Vector3 forwardDir = Orientation.transform.forward;
+        rb.AddForce(forwardDir.normalized*forwardForce*forwardMoveCoefficient);
+        Vector3 horizontalDir = Orientation.transform.right;
+        rigidBody.AddForce(horizontalDir.normalized*horizontalForce*horizontalMoveCoefficient);
+        rb.AddForce(rb.velocity * rho * -1.0f);
+        xRotation += xRotationSpeed;
+        yRotation += yRotationSpeed;
+        Orientation.transform.rotation = Quaternion.Euler(0,yRotation,0);
+        LookDirection.transform.rotation = Quaternion.Euler(xRotation,yRotation,0);
     }
 
     private void SpeedControl()
