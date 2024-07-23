@@ -10,6 +10,7 @@ private float mouseVertical;
 
 public PlayerMovement playerMovement;
 public float keyVertical;
+public float KeyHorizontal;
 
 
     void Start()
@@ -18,7 +19,7 @@ public float keyVertical;
       mouseVertical = 0;
       playerMovement = GetComponent<PlayerMovement>();
       keyVertical = 0;
-
+      KeyHorizontal = 0;
     }
 
 
@@ -30,6 +31,7 @@ public float keyVertical;
         playerMovement.yRotationSpeed = mouseHorizontal;
         keyVertical = Input.GetAxisRaw("Vertical");
         playerMovement.forwardForce = keyVertical;
-
+        KeyHorizontal = Input.GetAxisRaw("Horizontal");
+        playerMovement.horizontalForce = KeyHorizontal;
     }
 }
