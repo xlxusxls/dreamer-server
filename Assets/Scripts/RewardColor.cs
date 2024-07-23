@@ -27,17 +27,22 @@ public class RewardColorComponent : MonoBehaviour
     }
 
 // ApplyColor 메서드: RewardColorComponent에서 색상 정보를 가져와서 적용
+    
     private void OnValidate()
     {
         ApplyColor();
     }
+    
  // OnValidate 메서드 추가: 유니티 에디터에서 값이 변경될 때 호출됨
     private void ApplyColor()
     {
         var renderer = GetComponent<MeshRenderer>();
+        var tempMaterial = new Material(renderer.sharedMaterial);
+
         if (renderer != null)
         {
-            renderer.material.color = GetColor();
+            tempMaterial.color = GetColor();
+            renderer.sharedMaterial = tempMaterial;
         }
     }
 }
