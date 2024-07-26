@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private float xRotation;
     private float yRotation;
 
-    public float rho = 0f;
+    public float mouseSensitivity = 100f;
 
 
     void Start()
@@ -42,18 +42,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 forwardDir = Orientation.transform.forward;
         rb.AddForce(forwardDir.normalized * forwardForce * forwardMoveCoefficient);
         Vector3 horizontalDir = Orientation.transform.right;
         rb.AddForce(horizontalDir.normalized * horizontalForce * horizontalMoveCoefficient);
-        rb.AddForce(rb.velocity * rho * -1.0f); //공기저항
         SpeedControl();
 
-        xRotation -= xRotationSpeed;
+        xRotation -= xRotationSpeed * Time.fixedDeltaTime * mouseSensitivity;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f); //상하 시선이동 범위 제한
-        yRotation += yRotationSpeed;
+        yRotation += yRotationSpeed * Time.fixedDeltaTime * mouseSensitivity;
         Orientation.transform.rotation = Quaternion.Euler(0,yRotation,0);
         LookDirection.transform.rotation = Quaternion.Euler(xRotation,yRotation,0);
     }
