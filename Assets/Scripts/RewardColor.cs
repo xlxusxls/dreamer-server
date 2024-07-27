@@ -60,16 +60,4 @@ public class RewardColor : MonoBehaviour
     {
         ApplyColor();
     }
-
-    // OnEnable 메서드: 객체가 활성화될 때 색상 적용
-    private void OnEnable()
-    {
-        ApplyColor();
-    }
-
-    // Start 메서드: 게임이 시작될 때 색상 적용
-    private void Start()
-    {
-        ApplyColor();
-    }
 }
