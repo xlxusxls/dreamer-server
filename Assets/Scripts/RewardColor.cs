@@ -1,48 +1,63 @@
 using UnityEngine;
 
-public enum RewardColor
+public enum RewardColorElement
 {
     Red, Blue, Green, Black
 }
 
-public class RewardColorComponent : MonoBehaviour
+public class RewardColor : MonoBehaviour
 {
-    [SerializeField] private RewardColor rewardColor;
+    [SerializeField] private RewardColorElement rewardColorElement;
 
     public Color GetColor()
     {
-        switch (rewardColor)
+        switch (rewardColorElement)
         {
-            case RewardColor.Red:
+            case RewardColorElement.Red:
                 return Color.red;
-            case RewardColor.Blue:
+            case RewardColorElement.Blue:
                 return Color.blue;
-            case RewardColor.Green:
+            case RewardColorElement.Green:
                 return Color.green;
-            case RewardColor.Black:
+            case RewardColorElement.Black:
                 return Color.black;
             default:
                 return Color.white;
         }
     }
 
-// ApplyColor 메서드: RewardColorComponent에서 색상 정보를 가져와서 적용
-    
+    // ApplyColor 메서드: RewardColor에서 색상 정보를 가져와서 적용
+    private void ApplyColor()
+    {
+        var renderer = GetComponent<MeshRenderer>();
+
+        if (renderer != null)
+        {
+            Material tempMaterial;
+
+            if (renderer.sharedMaterial != null)
+            {
+                tempMaterial = new Material(renderer.sharedMaterial);
+            }
+            else
+            {
+                tempMaterial = new Material(Shader.Find("Standard"));
+            }
+
+            tempMaterial.color = GetColor();
+            renderer.sharedMaterial = tempMaterial;
+        }
+    }
+
+    // OnValidate 메서드: 유니티 에디터에서 값이 변경될 때 호출됨
     private void OnValidate()
     {
         ApplyColor();
     }
-    
- // OnValidate 메서드 추가: 유니티 에디터에서 값이 변경될 때 호출됨
-    private void ApplyColor()
-    {
-        var renderer = GetComponent<MeshRenderer>();
-        var tempMaterial = new Material(renderer.sharedMaterial);
 
-        if (renderer != null)
-        {
-            tempMaterial.color = GetColor();
-            renderer.sharedMaterial = tempMaterial;
-        }
+    // Awake 메서드: 객체가 생성될 때 색상 적용
+    private void Awake()
+    {
+        ApplyColor();
     }
 }

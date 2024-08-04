@@ -22,10 +22,15 @@ public class PlayerMovement : MonoBehaviour
     public float horizontalMoveCoefficient = 10f;
     public float forwardMoveCoefficient = 10f;
 <<<<<<< HEAD
+<<<<<<< HEAD
     public float speedLimit = 10f;
 
 =======
 >>>>>>> 8c8aeda9a18718168c684636512b582fe59e3c7a
+=======
+    public float speedLimit = 10f;
+
+>>>>>>> 5453a61204197e7da2206b29bc4afc7b9b47a54c
     public float xRotationSpeed;
     public float yRotationSpeed;
     public float JumpForce;
@@ -55,7 +60,12 @@ public class PlayerMovement : MonoBehaviour
         yRotation = 0;
     }
 
+<<<<<<< HEAD
     void Update()
+=======
+
+    void FixedUpdate()
+>>>>>>> 5453a61204197e7da2206b29bc4afc7b9b47a54c
     {
 <<<<<<< HEAD
         if (LocalInput.isJumpPressed() && readyToJump && grounded)
@@ -92,13 +102,22 @@ public class PlayerMovement : MonoBehaviour
         yRotation += yRotationSpeed * Time.fixedDeltaTime * mouseSensitivity;
 =======
         Vector3 forwardDir = Orientation.transform.forward;
-        rb.AddForce(forwardDir.normalized*forwardForce*forwardMoveCoefficient);
+        rb.AddForce(forwardDir.normalized * forwardForce * forwardMoveCoefficient);
         Vector3 horizontalDir = Orientation.transform.right;
+<<<<<<< HEAD
         rigidBody.AddForce(horizontalDir.normalized*horizontalForce*horizontalMoveCoefficient);
         rb.AddForce(rb.velocity * rho * -1.0f);
         xRotation += xRotationSpeed;
         yRotation += yRotationSpeed;
 >>>>>>> 8c8aeda9a18718168c684636512b582fe59e3c7a
+=======
+        rb.AddForce(horizontalDir.normalized * horizontalForce * horizontalMoveCoefficient);
+        SpeedControl();
+
+        xRotation -= xRotationSpeed * Time.fixedDeltaTime * mouseSensitivity;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f); //상하 시선이동 범위 제한
+        yRotation += yRotationSpeed * Time.fixedDeltaTime * mouseSensitivity;
+>>>>>>> 5453a61204197e7da2206b29bc4afc7b9b47a54c
         Orientation.transform.rotation = Quaternion.Euler(0,yRotation,0);
         LookDirection.transform.rotation = Quaternion.Euler(xRotation,yRotation,0);
     }
@@ -106,12 +125,16 @@ public class PlayerMovement : MonoBehaviour
     private void SpeedControl()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 5453a61204197e7da2206b29bc4afc7b9b47a54c
         //속도제한
         Vector3 currentVelocity = rb.velocity;
         if (currentVelocity.magnitude > speedLimit)
         {
             rb.velocity = currentVelocity.normalized * speedLimit;
         }
+<<<<<<< HEAD
     }
 
     private void Jump()
@@ -154,4 +177,7 @@ public class PlayerMovement : MonoBehaviour
     }
     
 >>>>>>> 8c8aeda9a18718168c684636512b582fe59e3c7a
+=======
+    }
+>>>>>>> 5453a61204197e7da2206b29bc4afc7b9b47a54c
 }
