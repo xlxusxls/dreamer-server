@@ -10,8 +10,12 @@ public class LocalInput : MonoBehaviour
 
     public PlayerMovement playerMovement;
     public float keyVertical;
-
+    public float keyHorizontal;
     private bool cursorLocked = true;
+    public bool isJumpPressed()
+    {
+        return Input.GetKeyDown(KeyCode.Space); // TAB 바를 점프 입력으로 사용합니다.
+    }
 
 
     void Start()
@@ -20,6 +24,7 @@ public class LocalInput : MonoBehaviour
         mouseVertical = 0;
         playerMovement = GetComponent<PlayerMovement>();
         keyVertical = 0;
+        keyHorizontal = 0;
         ToggleCursorLock(true);
     }
 
@@ -28,15 +33,19 @@ public class LocalInput : MonoBehaviour
     {
         mouseHorizontal = Input.GetAxisRaw("Mouse X");
         mouseVertical = Input.GetAxisRaw("Mouse Y");
-        playerMovement.xRotationSpeed = mouseVertical * (-1);
+        playerMovement.xRotationSpeed = mouseVertical;
         playerMovement.yRotationSpeed = mouseHorizontal;
         keyVertical = Input.GetAxisRaw("Vertical");
         playerMovement.forwardForce = keyVertical;
+        keyHorizontal = Input.GetAxisRaw("Horizontal");
+        playerMovement.horizontalForce = keyHorizontal;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            //ESC Ű�� Ŀ�� ��� ���� ����
             ToggleCursorLock(!cursorLocked);
         }
+
     }
 
     void ToggleCursorLock(bool isLocked)
